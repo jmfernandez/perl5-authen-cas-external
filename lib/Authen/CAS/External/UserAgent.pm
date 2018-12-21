@@ -378,9 +378,12 @@ sub _process_login_page {
 	# Find the login form
 	my $login_form;
 	FORM: foreach my $form (@forms) {
-		if (defined $form->find_input('lt')
-			&& defined $form->find_input('username')
-			&& defined $form->find_input('password')) {
+		if (defined $form->find_input('username')
+			&& defined $form->find_input('password')
+			&& (
+			defined $form->find_input('lt')
+			|| defined $form->find_input('execution')
+			) ) {
 			# Set this as the login form
 			$login_form = $form;
 
